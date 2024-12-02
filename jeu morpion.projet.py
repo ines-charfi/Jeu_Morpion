@@ -27,7 +27,7 @@ def choix_joueur():
             print("Vous avez choisi O; Le joueur n° 2 prendra X ")
     
     else:
-    joueur_actuel = input("Veuillez choisir votre signe soit une croix (X), soit un rond(O) : ")
+        joueur_actuel = input("Veuillez choisir votre signe soit une croix (X), soit un rond(O) : ")
         
 #definition de la fonction affichage_grille
 def affichage_grille() :
@@ -100,8 +100,10 @@ def joueur_suivant():
     else:
         joueur_actuel = "O"
         joueur_suivant = "X"
+ 
         
-        jouer()
+jouer()
+
     
         
         
