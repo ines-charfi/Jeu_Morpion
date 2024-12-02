@@ -1,0 +1,15 @@
+Initialisation du plateau de jeu
+
+fonction pour afficher le tableau de jeu
+fonction pour verifier s'il y a unn gagnant
+fonction pourr verifier si le tableau est plein
+fonction principale du jeu
+  demander au joueur de choisir une case
+     	. choisir entre 1 à 9
+	. si occuper choisir une autre case
+ entree invalide
+
+verifier quel joueur a gagner
+	felicitation le joueur ## a gagné
+
+ dire match nul
