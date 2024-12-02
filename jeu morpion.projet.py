@@ -1,9 +1,12 @@
+import random
+
 Grille = ["-" ,"-" ,"-", 
           "-" ,"-" ,"-", 
           "-" ,"-", "-"]
 
 joueur_actuel = ""
 fin_jeu = False
+contre_bot = False
 
 # Fonction principale du jeu
 def jouer():
