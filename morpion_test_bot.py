@@ -204,7 +204,22 @@ def bot_kenza_difficile():
             if valeurs.count(joueur) == 2 and valeurs.count("-") == 1:
                 return combinaison[valeurs.index["-"]]
         return None
-    
+
+#Kenbot essaie de gagner
+coup = trouver_meilleur_coup("O")
+if coup is not None:
+    Grille[coup] = "O"
+    return
+
+#Kenbot essaie de bloqouer l'adversaire
+coup = trouver_meilleur_coup("X")
+if coup is not None:
+    Grille[coup] = "O"
+    return
+
+#sinon, joue sur une case libre aléatoire
+position_vide = [i for i]
+
             
         
 
