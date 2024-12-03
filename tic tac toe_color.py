@@ -83,9 +83,9 @@ def affichage_grille():
     """
     print("\n")
     print("-------------")
-    print(f"| {ROUGE}{Grille[0]}{RESET} | {ROUGE}{Grille[1]}{RESET} | {ROUGE}{Grille[2]}{RESET} |                           |1|2|3|")
-    print(f"| {VERT}{Grille[3]}{RESET} | {VERT}{Grille[4]}{RESET} | {VERT}{Grille[5]}{RESET} |                           |4|5|6|")
-    print(f"| {ROUGE}{Grille[6]}{RESET} | {VERT}{Grille[7]}{RESET} | {ROUGE}{Grille[8]}{RESET} |                           |7|8|9|")
+    print(f"| {ROUGE}{Grille[0]} | {ROUGE}{Grille[1]} | {ROUGE}{Grille[2]} |                            |1|2|3|")
+    print(f"| {VERT}{Grille[3]} | {VERT}{Grille[4]} | {VERT}{Grille[5]} |                            |4|5|6|")
+    print(f"| {ROUGE}{Grille[6]} | {VERT}{Grille[7]} | {ROUGE}{Grille[8]} |                            |7|8|9|")
     print("-------------")
     print("\n")
 
