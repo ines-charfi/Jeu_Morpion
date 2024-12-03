@@ -1,6 +1,6 @@
 import random
 
-# Initialisation de la grille de jeu  (vide au début)
+# Initialisation de la grille de jeu (vide au début)
 Grille = ["-" ,"-" ,"-", 
           "-" ,"-" ,"-", 
           "-" ,"-", "-"]
