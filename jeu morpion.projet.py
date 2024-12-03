@@ -68,6 +68,7 @@ def tour(joueur):
     affichage_grille()
 
 # Fonction pour vérifier la fin du jeu
+
 def verifier_fin_jeu():
     global fin_jeu
     if coup_gagnant(joueur_actuel):
