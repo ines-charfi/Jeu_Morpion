@@ -195,6 +195,19 @@ def bot_kenza_difficile():
         """
         verifier les meilleurs positions pour gagner ou bloquer
         """
+        for combinaison in [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],  # Lignes
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],  # Colonnes
+            [0, 4, 8], [2, 4, 6]              # Diagonales
+        ]:
+            valeurs = [Grille[num] for num in combinaison]
+            if valeurs.count(joueur) == 2 and valeurs.count("-") == 1:
+                return combinaison[valeurs.index["-"]]
+        return None
+    
+            
+        
+
         
     
 
