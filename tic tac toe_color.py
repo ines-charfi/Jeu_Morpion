@@ -8,6 +8,8 @@ MAGENTA = "\033[35m"  # Pour les messages
 JAUNE = "\033[93m"  # Pour le bot
 RESET = "\033[0m"  # Réinitialiser la couleur
 
+print(VERT + " BIENVUNUE AU TIC TAC TOE" + RESET )
+
 # Initialisation de la grille de jeu (vide au début)
 Grille = ["-" ,"-" ,"-", 
           "-" ,"-" ,"-", 
@@ -83,9 +85,9 @@ def affichage_grille():
     """
     print("\n")
     print("-------------")
-    print(f"| {ROUGE}{Grille[0]}{RESET} | {ROUGE}{Grille[1]}{RESET} | {ROUGE}{Grille[2]}{RESET} |                           |1|2|3|")
-    print(f"| {VERT}{Grille[3]}{RESET} | {VERT}{Grille[4]}{RESET} | {VERT}{Grille[5]}{RESET} |                           |4|5|6|")
-    print(f"| {ROUGE}{Grille[6]}{RESET} | {VERT}{Grille[7]}{RESET} | {ROUGE}{Grille[8]}{RESET} |                           |7|8|9|")
+    print(f"| {ROUGE}{Grille[0]} | {ROUGE}{Grille[1]} | {ROUGE}{Grille[2]} |                           |1|2|3|")
+    print(f"| {VERT}{Grille[3]} | {VERT}{Grille[4]}|{VERT}{Grille[5]}|                                 |4|5|6|")
+    print(f"| {ROUGE}{Grille[6]} | {VERT}{Grille[7]}  |{ROUGE}{Grille[8]} |                           |7|8|9|")
     print("-------------")
     print("\n")
 
@@ -105,7 +107,7 @@ def tour(joueur):
             joueur_color = ROUGE
         else:
             joueur_color = VERT
-        print(f"{joueur_color}C'est le tour du joueur : {joueur}{RESET}")
+        print(MAGENTA + f"{joueur_color}C'est le tour du joueur : {joueur}{RESET}")
         valide = False
         while not valide:
             try:
@@ -119,7 +121,7 @@ def tour(joueur):
                     print(f"{JAUNE}Case invalide ou déjà occupée. Veuillez réessayer.{RESET}")
             except ValueError:
                 print(f"{JAUNE}Entrée invalide. Veuillez entrer un nombre entre 1 et 9.{RESET}")
-    affichage_grille()
+affichage_grille()
 
 # Fonction pour vérifier la fin du jeu
 def verifier_fin_jeu():
@@ -129,11 +131,11 @@ def verifier_fin_jeu():
     """
     global fin_jeu
     if coup_gagnant(joueur_actuel):  # Vérifie si le joueur actuel a une combinaison gagnante
-        print(f"{VERT}Félicitations ! Le joueur {joueur_actuel} a gagné !{RESET}")
+        print(f"{JAUNE}Félicitations ! Le joueur {joueur_actuel} a gagné !{RESET}")
         fin_jeu = True
     elif "-" not in Grille:  # Vérifie si toutes les cases sont remplies (match nul)
-        print(f"{JAUNE}Match nul !{RESET}")
-        fin_jeu = True
+    print(f"{JAUNE}Match nul !{RESET}")
+    fin_jeu = True
 
 # Fonction pour vérifier si un joueur a une combinaison gagnante
 def coup_gagnant(joueur):
