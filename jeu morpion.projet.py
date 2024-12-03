@@ -49,7 +49,7 @@ def choix_mode():
     choix = input("Voulez-vous jouer contre un bot ? (o/n) : ").lower()
     contre_bot = choix == "o"  # True si l'utilisateur choisit de jouer contre un bot
 
-# Fonction pour choisir le joueur initial
+# Fonction pour choisir le premier joueur
 def choix_joueur():
     """
     Permet à l'utilisateur de choisir son symbole (X ou O).
@@ -81,7 +81,7 @@ def affichage_grille():
     print("-------------")
     print("\n")
 
-# Fonction pour gérer le tour d'un joueur ou du bot
+# Fonction pour gérer le tour du joueur ou du bot
 def tour(joueur):
     """
     Gère le tour du joueur actuel :
