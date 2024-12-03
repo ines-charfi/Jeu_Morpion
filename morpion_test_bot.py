@@ -154,7 +154,7 @@ def coup_gagnant(joueur):
     combinaisons_gagnantes = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],  # Lignes
         [0, 3, 6], [1, 4, 7], [2, 5, 8],  # Colonnes
-        [0, 4, 8], [2, 4, 6]              # Diagonaleso
+        [0, 4, 8], [2, 4, 6]              # Diagonales
     ]
     for combinaison in combinaisons_gagnantes:
         if Grille[combinaison[0]] == Grille[combinaison[1]] == Grille[combinaison[2]] == joueur:
@@ -218,7 +218,11 @@ if coup is not None:
     return
 
 #sinon, joue sur une case libre aléatoire
-position_vide = [i for i]
+# Sinon, joue sur une case libre aléatoire
+position_vide = [i for i, case in enumerate(Grille) if case == "-"]
+if position_vide:
+    Grille[random.choice(position_vide)] = "O"
+
 
             
         
