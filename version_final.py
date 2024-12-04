@@ -170,7 +170,7 @@ def verifier_fin_jeu():
         print(f"{JAUNE}Félicitations ! Le joueur {colorier_case(joueur_actuel)}{JAUNE} a gagné !{RESET}")
         fin_jeu = True
     elif "-" not in Grille:  # Vérifie si toutes les cases sont remplies (match nul)
-        print(f"{MAGENTA}Match nul !{RESET}")
+        print(f"{VERT}Match nul !{RESET}")
         fin_jeu = True
 
 # Fonction pour vérifier si un joueur a une combinaison gagnante
