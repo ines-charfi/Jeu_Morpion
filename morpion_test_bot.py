@@ -1,4 +1,6 @@
-x
+import random
+
+# Initialisation de la grille de jeu  (vide au début)
 Grille = ["-" ,"-" ,"-", 
           "-" ,"-" ,"-", 
           "-" ,"-", "-"]
@@ -7,6 +9,7 @@ Grille = ["-" ,"-" ,"-",
 joueur_actuel = ""  # Le joueur actuel ("X" ou "O")
 fin_jeu = False  # Indique si la partie est terminée
 contre_bot = False  # Indique si on joue contre un bot
+niveau_bot = "" #Niveau du bot :"facile" ou "difficle"
 
 # Fonction principale du jeu
 def jouer():
@@ -46,6 +49,24 @@ def choix_mode():
     global contre_bot
     choix = input("Voulez-vous jouer contre un bot ? (o/n) : ").lower()
     contre_bot = choix == "o"  # True si l'utilisateur choisit de jouer contre un bot
+#Fonction pour choisir le niveau du bot
+def choix_niveau_bot():
+    """
+    permet de choisir le niveau de difficulté du bot : facile ou difficule
+    modifie la variable globale 'niveau_bot'
+    """
+    global niveau_bot
+    while True:
+        niveau_bot = input("Choisissez le niveau du bot : facile ou difficile (f/d) : ").lower() 
+        if niveau_bot in ("f", "d"):
+            niveau_bot = "facile" if niveau_bot == "f" else "difficile"
+            print(f"Vous avez choisi un bot {niveau_bot}.")
+            break
+        else:
+            print(f"Entrée invalide. Veuillez choisir entre 'f'(facile) ou 'd'(difficile)")
+
+
+
 
 # Fonction pour choisir le premier joueur
 def choix_joueur():
@@ -86,10 +107,13 @@ def tour(joueur):
     - Si c'est le bot, effectue un coup aléatoire.
     - Si c'est un joueur humain, demande une position valide.
     """
-    global contre_bot
+    global contre_bot, niveau_bot
     if joueur == "O" and contre_bot:  # Si c'est le tour du bot
         print("Le bot joue...")
-        bot_mouvement_random()
+        if niveau_bot == "facile":
+            bot_facile()
+        elif niveau_bot == "difficile":
+            bot_kenza_difficile()
     else:  # Si c'est le tour d'un joueur humain
         print(f"C'est le tour du joueur : {joueur}")
         valide = False
@@ -130,7 +154,7 @@ def coup_gagnant(joueur):
     combinaisons_gagnantes = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],  # Lignes
         [0, 3, 6], [1, 4, 7], [2, 5, 8],  # Colonnes
-        [0, 4, 8], [2, 4, 6]              # Diagonaleso
+        [0, 4, 8], [2, 4, 6]              # Diagonales
     ]
     for combinaison in combinaisons_gagnantes:
         if Grille[combinaison[0]] == Grille[combinaison[1]] == Grille[combinaison[2]] == joueur:
@@ -148,13 +172,59 @@ def joueur_suivant():
     joueur_actuel = "O" if joueur_actuel == "X" else "X"
 
 # Fonction pour gérer le coup aléatoire du bot
-def bot_mouvement_random():
+def bot_facile():
     """
-    Le bot joue un coup en choisissant une position vide aléatoire
-    dans la grille.
+    Bot de niveau facile :
+    - Choisit une case libre au hasard.
+    """
+    position_vide = [i for i, case in enumerate(Grille) if case == "-"]
+    if position_vide:
+        Grille[random.choice(position_vide)] = "O"
+
+
+#fonction pour gérer le bot kenbot
+def bot_kenza_difficile():
+    """
+    Kenbot joue intelligemment:
+    - il cherche à gagner dès que possible.
+    - bloque l'adversaire si nécessaire.
+    - Sinon, joue sur une case libre aléatoire.
     """
     global Grille
-    import random
+    def trouver_meilleur_coup(joueur):
+        """
+        verifier les meilleurs positions pour gagner ou bloquer
+        """
+        for combinaison in [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],  # Lignes
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],  # Colonnes
+            [0, 4, 8], [2, 4, 6]              # Diagonales
+        ]:
+            valeurs = [Grille[num] for num in combinaison]
+            if valeurs.count(joueur) == 2 and valeurs.count("-") == 1:
+                return combinaison[valeurs.index["-"]]
+        return None
+
+#Kenbot essaie de gagner
+coup = trouver_meilleur_coup("O")
+if coup is not None:
+    Grille[coup] = "O"
+return
+
+#Kenbot essaie de bloqouer l'adversaire
+coup = trouver_meilleur_coup("X")
+if coup is not None:
+    Grille[coup] = "O"
+return
+
+#sinon, joue sur une case libre aléatoire
+# Sinon, joue sur une case libre aléatoire
+position_vide = [i for i, case in enumerate(Grille) if case == "-"]
+if position_vide:
+    Grille[random.choice(position_vide)] = "O"
+
+
+            
 
 # Initialisation de la grille de jeu (vide au début)
 Grille = ["-" ,"-" ,"-", 
