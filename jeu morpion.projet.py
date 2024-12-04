@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 import random
 print("TIC TAC TOE")
+=======
+x
+>>>>>>> d02e6525686d2529c6ace11cde689d510232dd1f
 Grille = ["-" ,"-" ,"-", 
           "-" ,"-" ,"-", 
           "-" ,"-", "-"]
 
 joueur_actuel = ""
 fin_jeu = False
+<<<<<<< HEAD
 contre_bot = False
+=======
+>>>>>>> d02e6525686d2529c6ace11cde689d510232dd1f
 
 # Fonction principale du jeu
 def jouer():
@@ -68,7 +75,10 @@ def tour(joueur):
     affichage_grille()
 
 # Fonction pour vérifier la fin du jeu
+<<<<<<< HEAD
 
+=======
+>>>>>>> d02e6525686d2529c6ace11cde689d510232dd1f
 def verifier_fin_jeu():
     global fin_jeu
     if coup_gagnant(joueur_actuel):
