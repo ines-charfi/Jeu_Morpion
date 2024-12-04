@@ -64,7 +64,7 @@ def choix_mode():
     """
     Permet de choisir si on joue contre un autre joueur ou contre un bot.
     Modifie la variable globale `contre_bot` pour refléter le choix de l'utilisateur.
-    
+
     """
     global contre_bot
     choix = input(f"{VIOLET}Voulez-vous jouer contre un bot ? (o/n) : {RESET}").lower()
@@ -136,7 +136,7 @@ def colorier_case(case):
 def tour(joueur):
     """
     Gère le tour du joueur actuel :
-    - Si c'est le bot, effectue un coup en fonction du niveau.
+    - Si c'est le bot, effectue un coup en fonction du.
     - Si c'est un utilisateur, demande une position possible.
     """
     global contre_bot, niveau_bot
