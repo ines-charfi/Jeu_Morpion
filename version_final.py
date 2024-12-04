@@ -213,10 +213,48 @@ def bot_facile():
 # Fonction pour un bot difficile (espace réservé pour ajouter une logique avancée)
 def bot_kenza_difficile():
     """
-    Le bot difficile joue de manière plus stratégique.
-    
+    Kenbot joue intelligemment :
+    - Cherche à gagner si possible.
+    - Bloque l'adversaire si nécessaire.
+    - Sinon, joue sur une case libre aléatoire.
     """
-    print(f"{ROUGE}Bot difficile pas encore implémenté.{RESET}")
+    global Grille
+
+    def trouver_meilleur_coup(joueur):
+        """
+        Vérifie les meilleures positions pour gagner ou bloquer.
+        """
+        # boucle pour parcourir toutes les combinaisons gagnantes possibles
+        for combinaison in [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],  # Lignes
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],  # Colonnes
+            [0, 4, 8], [2, 4, 6]              # Diagonales
+        ]:
+            # Extraire les valeurs dans la grille pour combiner
+            valeurs = [Grille[i] for i in combinaison]
+
+            # Vérifier si cette combinaison a exactement deux cases remplies par le joueur actuel et une case vide
+            if valeurs.count(joueur) == 2 and valeurs.count("-") == 1:
+                return combinaison[valeurs.index("-")]
+        return None
+
+    # Kenbot essaie de gagner
+    coup = trouver_meilleur_coup("O")
+    if coup is not None:
+        Grille[coup] = "O"
+        return
+
+    # Kenbot essaie de bloquer l'adversaire
+    coup = trouver_meilleur_coup("X")
+    if coup is not None:
+        Grille[coup] = "O"
+        return
+
+    # Sinon, joue sur une case libre aléatoire
+    position_vide = [i for i, case in enumerate(Grille) if case == "-"]
+    if position_vide:
+        Grille[random.choice(position_vide)] = "O"
+
 
 # Lancement du jeu
 jouer()
