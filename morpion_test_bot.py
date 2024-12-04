@@ -56,8 +56,8 @@ def choix_niveau_bot():
     modifie la variable globale 'niveau_bot'
     """
     global niveau_bot
-    while true:
-        niveau_bot = input("Choisissez le niveau du bot : facile ou difficile (f/d) : ").lower():
+    while True:
+        niveau_bot = input("Choisissez le niveau du bot : facile ou difficile (f/d) : ").lower() 
         if niveau_bot in ("f", "d"):
             niveau_bot = "facile" if niveau_bot == "f" else "difficile"
             print(f"Vous avez choisi un bot {niveau_bot}.")
