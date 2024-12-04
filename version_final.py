@@ -166,7 +166,7 @@ def tour(joueur):
 def verifier_fin_jeu():
     """
     Vérifie si le joueur actuel a gagné ou si la grille est pleine (match nul).
-    Met fin à la partie si l'une de ces conditions est remplie.
+    
     """
     global fin_jeu
     if coup_gagnant(joueur_actuel):  # Vérifie si le joueur actuel a une combinaison gagnante
