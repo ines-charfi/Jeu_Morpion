@@ -163,6 +163,7 @@ def tour(joueur):
                 print(f"{ROUGE}Entrée invalide. Veuillez entrer un nombre entre 1 et 9.{RESET}")
 
 # Fonction pour vérifier la fin du jeu
+# Fonction pour vérifier la fin du jeu
 def verifier_fin_jeu():
     """
     Vérifie si le joueur actuel a gagné ou si la grille est pleine (match nul).
@@ -170,11 +171,15 @@ def verifier_fin_jeu():
     """
     global fin_jeu
     if coup_gagnant(joueur_actuel):  # Vérifie si le joueur actuel a une combinaison gagnante
-        print(f"{JAUNE}Félicitations ! Le joueur {colorier_case(joueur_actuel)}{JAUNE} a gagné !{RESET}")
+        if contre_bot and joueur_actuel == "O":  # Si c'est le bot qui a gagné
+            print(f"{ROUGE}Vous avez perdu, c'est le bot qui a gagné : {colorier_case(joueur_actuel)}{RESET}")
+        else:
+            print(f"{JAUNE}Félicitations ! Le joueur {colorier_case(joueur_actuel)}{JAUNE} a gagné !{RESET}")
         fin_jeu = True
     elif "-" not in Grille:  # Vérifie si toutes les cases sont remplies (match nul)
         print(f"{MAGENTA}Match nul !{RESET}")
         fin_jeu = True
+
 
 # Fonction pour vérifier si un joueur a une combinaison gagnante
 def coup_gagnant(joueur):
