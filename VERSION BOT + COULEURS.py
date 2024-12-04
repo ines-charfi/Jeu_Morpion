@@ -10,6 +10,8 @@ VIOLET = "\033[35m"
 MAGENTA = "\033[35m"
 RESET = "\033[0m"  # Pour réinitialiser la couleur
 
+print( ROUGE + " BIENVENUE AU TIC TAC TOE" + RESET)
+
 # Initialisation de la grille de jeu (vide au début)
 Grille = ["-", "-", "-",
           "-", "-", "-",
@@ -106,11 +108,11 @@ def affichage_grille():
     pour aider les joueurs à choisir leur position.
     """
     print("\n")
-    print(f"{ROSE}-------------{RESET}")
+    print(f"{VERT}-------------{RESET}")
     print(f"| {colorier_case(Grille[0])} | {colorier_case(Grille[1])} | {colorier_case(Grille[2])} |                           |1|2|3|")
     print(f"| {colorier_case(Grille[3])} | {colorier_case(Grille[4])} | {colorier_case(Grille[5])} |                           |4|5|6|")
     print(f"| {colorier_case(Grille[6])} | {colorier_case(Grille[7])} | {colorier_case(Grille[8])} |                           |7|8|9|")
-    print(f"{ROSE}-------------{RESET}")
+    print(f"{VERT}-------------{RESET}")
     print("\n")
 
 # Fonction pour colorier les cases selon le symbole
