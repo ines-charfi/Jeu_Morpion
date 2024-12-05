@@ -14,10 +14,6 @@ RESET = "\033[0m"  # Pour réinitialiser la couleur
 # Message de bienvenue affiché au début du jeu
 print( ROUGE + " BIENVENUE AU TIC TAC TOE" + RESET)
 
-# Initialisation de la grille de jeu (vide au début)
-Grille = ["-", "-", "-",
-          "-", "-", "-",
-          "-", "-", "-"]
 
 # Variables globales pour suivre l'état du jeu
 fin_jeu = False  # Indique si la partie est terminée
@@ -93,12 +89,12 @@ def choix_joueur():
     """
     global joueur_actuel
     while True:
-        joueur_actuel = input(f"{VERT}Veuillez choisir votre signe, soit une croix (X), soit un rond (O) : {RESET}").upper()
+        joueur_actuel = input(f"{MAGENTA}Veuillez choisir votre signe, soit une croix (X), soit un rond (O) : {RESET}").upper()
         if joueur_actuel == 'X':
             print(f"{BLEU}Vous avez choisi X. L'autre joueur/bot prendra O.{RESET}")
             break
         elif joueur_actuel == 'O':
-            print(f"{ROSE}Vous avez choisi O. L'autre joueur/bot prendra X.{WHITE}")
+            print(f"{ROSE}Vous avez choisi O. L'autre joueur/bot prendra X.{RESET}")
             break
         else:
             print(f"{ROUGE}Entrée invalide. Veuillez choisir entre X et O.{RESET}")
