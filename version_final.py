@@ -1,5 +1,19 @@
 import random
 
+# Définition des couleurs pour l'affichage dans le terminal
+# Ces couleurs sont utilisées pour styliser les messages imprimés à l'écran
+JAUNE = "\033[33m"
+ROUGE = "\033[31m"
+VERT = "\033[32m"
+BLEU = "\033[34m"
+ROSE = "\033[35m"
+VIOLET = "\033[35m"
+MAGENTA = "\033[35m"
+RESET = "\033[0m"  # Pour réinitialiser la couleur
+
+# Message de bienvenue affiché au début du jeu
+print( ROUGE + " BIENVENUE AU TIC TAC TOE" + RESET)
+
 # Initialisation de la grille de jeu (vide au début)
 Grille = ["-", "-", "-",
           "-", "-", "-",
@@ -40,36 +54,37 @@ def jouer():
             affichage_grille()
 
         # Demander si les joueurs veulent rejouer
-        rejouer = input("Voulez-vous rejouer ? (o/n) : ").lower()
+        rejouer = input(f"{MAGENTA}Voulez-vous rejouer ? (o/n) : {RESET}").lower()
         if rejouer != "o":
-            print("Merci d'avoir joué ! À bientôt !")
+            print(f"{VERT}Merci d'avoir joué ! À bientôt !{RESET}")
             break  # Quitter la boucle si les joueurs ne veulent plus jouer
 
 # Fonction pour choisir le mode de jeu
 def choix_mode():
     """
     Permet de choisir si on joue contre un autre joueur ou contre un bot.
-    Modifie la variable globale `contre_bot`..
+    Modifie la variable globale `contre_bot` pour refléter le choix de l'utilisateur.
+    
     """
     global contre_bot
-    choix = input("Voulez-vous jouer contre un bot ? (o/n) : ").lower()
+    choix = input(f"{VIOLET}Voulez-vous jouer contre un bot ? (o/n) : {RESET}").lower()
     contre_bot = choix == "o"  # True si l'utilisateur choisit de jouer contre un bot
 
 # Fonction pour choisir le niveau du bot
 def choix_niveau_bot():
     """
-    Permet de choisir le niveau de difficulté du bot : facile ou difficile
-    Modifie la variable globale 'niveau_bot'
+    Permet de choisir le niveau de difficulté du bot : facile ou difficile.
+    Modifie la variable globale 'niveau_bot' en fonction du choix de l'utilisateur.
     """
     global niveau_bot
     while True:
-        niveau_bot = input("Choisissez le niveau du bot : facile ou difficile (f/d) : ").lower()
+        niveau_bot = input(f"{BLEU}Choisissez le niveau du bot : facile ou difficile (f/d) : {RESET}").lower()
         if niveau_bot in ("f", "d"):
             niveau_bot = "facile" if niveau_bot == "f" else "difficile"
-            print(f"Vous avez choisi un bot {niveau_bot}.")
+            print(f"{VERT}Vous avez choisi un bot {niveau_bot}.{RESET}")
             break
         else:
-            print("Entrée invalide. Veuillez choisir entre 'f'(facile) ou 'd'(difficile)")
+            print(f"{ROUGE}Entrée invalide. Veuillez choisir entre 'f'(facile) ou 'd'(difficile){RESET}")
 
 # Fonction pour choisir le joueur initial
 def choix_joueur():
@@ -79,15 +94,15 @@ def choix_joueur():
     """
     global joueur_actuel
     while True:
-        joueur_actuel = input("Veuillez choisir votre signe, soit une croix (X), soit un rond (O) : ").upper()
+        joueur_actuel = input(f"{MAGENTA}Veuillez choisir votre signe, soit une croix (X), soit un rond (O) : {RESET}").upper()
         if joueur_actuel == 'X':
-            print("Vous avez choisi X. L'autre joueur/bot prendra O.")
+            print(f"{BLEU}Vous avez choisi X. L'autre joueur/bot prendra O.{RESET}")
             break
         elif joueur_actuel == 'O':
-            print("Vous avez choisi O. L'autre joueur/bot prendra X.")
+            print(f"{ROSE}Vous avez choisi O. L'autre joueur/bot prendra X.{RESET}")
             break
         else:
-            print("Entrée invalide. Veuillez choisir entre X et O.")
+            print(f"{ROUGE}Entrée invalide. Veuillez choisir entre X et O.{RESET}")
 
 # Fonction pour afficher la grille
 def affichage_grille():
@@ -96,43 +111,58 @@ def affichage_grille():
     pour aider les joueurs à choisir leur position.
     """
     print("\n")
-    print("-------------")
-    print(f"| {Grille[0]} | {Grille[1]} | {Grille[2]} |                           |1|2|3|")
-    print(f"| {Grille[3]} | {Grille[4]} | {Grille[5]} |                           |4|5|6|")
-    print(f"| {Grille[6]} | {Grille[7]} | {Grille[8]} |                           |7|8|9|")
-    print("-------------")
+    print(f"{VERT}-------------{RESET}")
+    print(f"| {colorier_case(Grille[0])} | {colorier_case(Grille[1])} | {colorier_case(Grille[2])} |                           |1|2|3|")
+    print(f"| {colorier_case(Grille[3])} | {colorier_case(Grille[4])} | {colorier_case(Grille[5])} |                           |4|5|6|")
+    print(f"| {colorier_case(Grille[6])} | {colorier_case(Grille[7])} | {colorier_case(Grille[8])} |                           |7|8|9|")
+    print(f"{VERT}-------------{RESET}")
     print("\n")
+
+# Fonction pour colorier les cases selon le symbole
+def colorier_case(case):
+    """
+    Retourne la couleur associée à la case selon qu'elle soit X, O ou vide.
+    """
+    if case == "X":
+        return f"{BLEU}{case}{RESET}"  # X en bleu
+    elif case == "O":
+        return f"{ROUGE}{case}{RESET}"  # O en rouge
+    elif case == "-":
+        return f"{MAGENTA}{case}{RESET}"  # Case vide en magenta
+    else:
+        return case
 
 # Fonction pour gérer le tour du joueur ou du bot
 def tour(joueur):
     """
     Gère le tour du joueur actuel :
     - Si c'est le bot, effectue un coup en fonction du niveau.
-    - Si c'est un joueur humain, demande une position valide.
+    - Si c'est un utilisateur, demande une position possible.
     """
     global contre_bot, niveau_bot
     if joueur == "O" and contre_bot:  # Si c'est le tour du bot
-        print("Le bot joue...")
+        print(f"{VERT}Le bot joue...{RESET}")
         if niveau_bot == "facile":
             bot_facile()
         elif niveau_bot == "difficile":
             bot_kenza_difficile()
-    else:  # Si c'est le tour d'un joueur humain
-        print(f"C'est le tour du joueur : {joueur}")
+    else:  # Si c'est le tour d'un utilisateur
+        print(f"{VERT}C'est le tour du joueur : {colorier_case(joueur)}{RESET}")
         valide = False
         while not valide:
             try:
                 # Demander une position entre 1 et 9
-                position = int(input("Veuillez sélectionner une case vide sur la grille entre 1 et 9 : ")) - 1
+                position = int(input(f"{MAGENTA}Veuillez sélectionner une case vide sur la grille entre 1 et 9 : {RESET}")) - 1
                 # Vérifier si la position est valide
                 if position in range(9) and Grille[position] == "-":
                     Grille[position] = joueur
                     valide = True
                 else:
-                    print("Case invalide ou déjà occupée. Veuillez réessayer.")
+                    print(f"{ROUGE}Case invalide ou déjà occupée. Veuillez réessayer.{RESET}")
             except ValueError:
-                print("Entrée invalide. Veuillez entrer un nombre entre 1 et 9.")
+                print(f"{ROUGE}Entrée invalide. Veuillez entrer un nombre entre 1 et 9.{RESET}")
 
+# Fonction pour vérifier la fin du jeu
 # Fonction pour vérifier la fin du jeu
 def verifier_fin_jeu():
     """
@@ -141,11 +171,15 @@ def verifier_fin_jeu():
     """
     global fin_jeu
     if coup_gagnant(joueur_actuel):  # Vérifie si le joueur actuel a une combinaison gagnante
-        print(f"Félicitations ! Le joueur {joueur_actuel} a gagné !")
+        if contre_bot and joueur_actuel == "O":  # Si c'est le bot qui a gagné
+            print(f"{ROUGE}Vous avez perdu, c'est le bot qui a gagné : {colorier_case(joueur_actuel)}{RESET}")
+        else:
+            print(f"{JAUNE}Félicitations ! Le joueur {colorier_case(joueur_actuel)}{JAUNE} a gagné !{RESET}")
         fin_jeu = True
     elif "-" not in Grille:  # Vérifie si toutes les cases sont remplies (match nul)
-        print("Match nul !")
+        print(f"{VERT}Match nul !{RESET}")
         fin_jeu = True
+
 
 # Fonction pour vérifier si un joueur a une combinaison gagnante
 def coup_gagnant(joueur):
@@ -156,7 +190,7 @@ def coup_gagnant(joueur):
     combinaisons_gagnantes = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],  # Lignes
         [0, 3, 6], [1, 4, 7], [2, 5, 8],  # Colonnes
-        [0, 4, 8], [2, 4, 6]              # Diagonales
+        [0, 4, 8], [2, 4, 6]  # Diagonales
     ]
     for combinaison in combinaisons_gagnantes:
         if Grille[combinaison[0]] == Grille[combinaison[1]] == Grille[combinaison[2]] == joueur:
@@ -166,24 +200,22 @@ def coup_gagnant(joueur):
 # Fonction pour changer de joueur
 def joueur_suivant():
     """
-    Change le joueur actuel :
-    - Si c'est "X", passe à "O".
-    - Si c'est "O", passe à "X".
+    Change le joueur actuel (X devient O et vice-versa).
     """
     global joueur_actuel
     joueur_actuel = "O" if joueur_actuel == "X" else "X"
 
-# Bot facile : joue sur une case libre au hasard
+# Fonction pour le bot facile (choisit une case au hasard)
 def bot_facile():
     """
-    Bot de niveau facile :
-    - Choisit une case libre au hasard.
+    Le bot facile choisit une case vide au hasard parmi celles disponibles.
     """
-    position_vide = [i for i, case in enumerate(Grille) if case == "-"]
-    if position_vide:
-        Grille[random.choice(position_vide)] = "O"
+    case_disponible = [i for i, case in enumerate(Grille) if case == "-"]
+    choix = random.choice(case_disponible)
+    Grille[choix] = "O"
+    print(f"{VERT}Le bot a choisi la case {choix + 1}.{RESET}")
 
-# Bot difficile (Kenbot)
+# Fonction pour un bot difficile (espace réservé pour ajouter une logique avancée)
 def bot_kenza_difficile():
     """
     Kenbot joue intelligemment :
@@ -228,5 +260,6 @@ def bot_kenza_difficile():
     if position_vide:
         Grille[random.choice(position_vide)] = "O"
 
-# Lancer le jeu
+
+# Lancement du jeu
 jouer()
