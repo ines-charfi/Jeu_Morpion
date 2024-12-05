@@ -9,10 +9,10 @@ BLEU = "\033[34m"
 ROSE = "\033[35m"
 VIOLET = "\033[35m"
 MAGENTA = "\033[35m"
-RESET = "\033[0m"  # Pour réinitialiser la couleur
+WHITE = "\033[0m"  # Pour réinitialiser la couleur
 
 # Message de bienvenue affiché au début du jeu
-print( ROUGE + " BIENVENUE AU TIC TAC TOE" + RESET)
+print( ROUGE + " BIENVENUE AU TIC TAC TOE" + WHITE)
 
 # Initialisation de la grille de jeu (vide au début)
 Grille = ["-", "-", "-",
@@ -53,7 +53,7 @@ def jouer():
             affichage_grille()
 
         # Demander si les joueurs veulent rejouer
-        rejouer = input(f"{MAGENTA}Voulez-vous rejouer ? (o/n) : {RESET}").lower()
+        rejouer = input(f"{MAGENTA}Voulez-vous rejouer ? (o/n) : {}").lower()
         if rejouer != "o":
             print(f"{VERT}Merci d'avoir joué ! À bientôt !{RESET}")
             break  # Quitter la boucle si les joueurs ne veulent plus jouer
@@ -93,12 +93,12 @@ def choix_joueur():
     """
     global joueur_actuel
     while True:
-        joueur_actuel = input(f"{MAGENTA}Veuillez choisir votre signe, soit une croix (X), soit un rond (O) : {RESET}").upper()
+        joueur_actuel = input(f"{VERT}Veuillez choisir votre signe, soit une croix (X), soit un rond (O) : {RESET}").upper()
         if joueur_actuel == 'X':
             print(f"{BLEU}Vous avez choisi X. L'autre joueur/bot prendra O.{RESET}")
             break
         elif joueur_actuel == 'O':
-            print(f"{ROSE}Vous avez choisi O. L'autre joueur/bot prendra X.{RESET}")
+            print(f"{ROSE}Vous avez choisi O. L'autre joueur/bot prendra X.{WHITE}")
             break
         else:
             print(f"{ROUGE}Entrée invalide. Veuillez choisir entre X et O.{RESET}")
