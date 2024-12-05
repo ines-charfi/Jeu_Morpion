@@ -226,7 +226,7 @@ def bot_facile():
     """
     case_disponible = [i for i, case in enumerate(Grille) if case == "-"]
     choix = random.choice(case_disponible)
-    Grille[choix] = "O" #met à jour la grille après le coup du bot
+    Grille[choix] = "O" #met à jour la grille après le coup du bot et permet au bot de bouger
     print(f"{VERT}Le bot a choisi la case {choix + 1}.{RESET}")
 
 # Fonction pour un bot difficile (espace réservé pour ajouter une logique avancée)
