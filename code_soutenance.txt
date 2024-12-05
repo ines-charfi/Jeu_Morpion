@@ -1,0 +1,65 @@
+Explication du Code "Tic Tac Toe" pour la Soutenance
+1. Affichage du Titre :
+Le jeu commence avec l’affichage d’un titre en couleur :
+
+Parcours des Fonctions :
+1. choix_niveau_bot
+Demande à l’utilisateur s’il veut jouer contre un bot facile ou difficile.
+Si l’entrée est invalide, retourne dans une boucle pour choisir entre f (facile) ou d (difficile).
+2. choix_joueur
+Permet de choisir entre "X" ou "O".
+Si "X" est choisi, l’autre joueur (ou bot) aura "O", et vice-versa.
+3. colorier_case
+Retourne la couleur associée à chaque symbole (X en bleu, O en rouge) pour l’affichage.
+4. tour(joueur)
+Si c’est le bot, il joue un coup selon son niveau (facile ou difficile).
+Si c’est un joueur humain, demande une case entre 1 et 9.
+5. verifier_fin_jeu
+Vérifie si un joueur a une combinaison gagnante ou si toutes les cases sont remplies (match nul).
+6. coup_gagnant(joueur)
+Parcourt toutes les combinaisons gagnantes possibles.
+Retourne True si une combinaison gagnante est trouvée pour le joueur donné.
+7. joueur_suivant
+Alterne entre les joueurs "X" et "O".
+8. bot_facile
+Choisit une case vide au hasard pour jouer.
+9. bot_kenza_difficile
+Cherche un coup gagnant ou bloque un coup potentiel de l’adversaire.
+Sinon, joue sur une case libre aléatoire.
+Explication Globale de la Fonction jouer()
+Boucle Principale while True :
+
+Initialisation de la Grille : Réinitialise la grille à chaque partie.
+Choix du Mode : Propose de jouer contre un bot ou un autre joueur.
+Si contre un bot :
+
+Entre dans une boucle pour choisir le niveau (facile ou difficile).
+En cas de niveau facile, un message de confirmation s’affiche et la boucle se termine.
+Retour à la Fonction choix_joueur :
+
+Demande de choisir entre "X" et "O".
+Le symbole choisi détermine celui attribué à l’autre joueur (ou bot).
+Affichage de la Grille :
+
+Affiche les cases disponibles numérotées de 1 à 9.
+Gère chaque ligne et colonne avec des délimiteurs (|) et des couleurs selon les symboles.
+Boucle while not fin_jeu :
+
+Tour Joueur/Bot : Si c’est le bot, appelle bot_facile ou bot_kenza_difficile.
+Vérification Fin de Jeu :
+Si un joueur gagne, affiche un message de victoire.
+Si toutes les cases sont remplies, affiche "Match nul".
+Si Mode Difficile :
+
+Appelle bot_kenza_difficile :
+Cherche un coup gagnant ou bloque un coup adverse.
+Sinon, choisit une case libre aléatoire.
+Après Chaque Tour :
+
+Affiche la grille mise à jour.
+Si la partie continue, passe au joueur suivant.
+Fin de Partie :
+
+Si la grille est pleine, affiche un match nul.
+Si un joueur gagne, affiche un message de victoire avec le symbole correspondant.
+Propose de rejouer ou de quitter.
