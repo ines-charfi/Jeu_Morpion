@@ -9,10 +9,10 @@ BLEU = "\033[34m"
 ROSE = "\033[35m"
 VIOLET = "\033[35m"
 MAGENTA = "\033[35m"
-WHITE = "\033[0m"  # Pour réinitialiser la couleur
+RESET = "\033[0m"  # Pour réinitialiser la couleur
 
 # Message de bienvenue affiché au début du jeu
-print( ROUGE + " BIENVENUE AU TIC TAC TOE" + WHITE)
+print( ROUGE + " BIENVENUE AU TIC TAC TOE" + RESET)
 
 # Initialisation de la grille de jeu (vide au début)
 Grille = ["-", "-", "-",
@@ -54,7 +54,7 @@ def jouer():
             affichage_grille()
 
         # Demander si les joueurs veulent rejouer
-        rejouer = input(f"{MAGENTA}Voulez-vous rejouer ? (o/n) : {}").lower()
+        rejouer = input(f"{MAGENTA}Voulez-vous rejouer ? (o/n) : {RESET}").lower()
         if rejouer != "o":
             print(f"{VERT}Merci d'avoir joué ! À bientôt !{RESET}")
             break  # Quitter la boucle si les joueurs ne veulent plus jouer
