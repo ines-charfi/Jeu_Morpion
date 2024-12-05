@@ -20,7 +20,6 @@ Grille = ["-", "-", "-",
           "-", "-", "-"]
 
 # Variables globales pour suivre l'état du jeu
-joueur_actuel = ""  # Le joueur actuel ("X" ou "O")
 fin_jeu = False  # Indique si la partie est terminée
 contre_bot = False  # Indique si on joue contre un bot
 niveau_bot = ""  # Niveau du bot : "facile" ou "difficile"
