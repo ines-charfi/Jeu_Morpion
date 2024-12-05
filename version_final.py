@@ -163,7 +163,6 @@ def tour(joueur):
                 print(f"{ROUGE}Entrée invalide. Veuillez entrer un nombre entre 1 et 9.{RESET}")
 
 # Fonction pour vérifier la fin du jeu
-# Fonction pour vérifier la fin du jeu
 def verifier_fin_jeu():
     """
     Vérifie si le joueur actuel a gagné ou si la grille est pleine (match nul).
